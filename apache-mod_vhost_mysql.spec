@@ -1,6 +1,3 @@
-#
-# TODO:
-# other number at httpd.conf ?
 
 %define		mod_name	vhost_mysql
 %define 	apxs		/usr/sbin/apxs
@@ -8,12 +5,12 @@ Summary:	Apache vhost in MySQL
 Summary(pl):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
 Version:	0.10
-Release:	0.8
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_name}2-%{version}.tar.gz
 # Source0-md5:	c47c8dc4ac41e9ed2c91a239c876d272
-Source1:	95_vhost_mysql.conf
+Source1:	apache_vhost_mysql.conf
 BuildRequires:	%{apxs}
 BuildRequires:	apache-devel
 BuildRequires:	db-devel >= 4.2.52
@@ -39,7 +36,7 @@ rm -rf .libs *.{la,lo,o,slo}
 
 %build
 %{__make} \
-	APXS=apxs
+	APXS=/usr/sbin/apxs
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -47,7 +44,7 @@ install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 
 install .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/21_vhost_mysql.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -69,5 +66,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README vh.sql
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/95_vhost_mysql.conf
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/*_vhost_mysql.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
