@@ -66,5 +66,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README vh.sql
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd.conf/*_vhost_mysql.conf
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/httpd.conf/*_vhost_mysql.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
