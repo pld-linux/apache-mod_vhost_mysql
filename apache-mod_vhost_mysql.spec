@@ -5,7 +5,7 @@ Summary:	Apache vhost in MySQL
 Summary(pl):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
 Version:	0.10
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_name}2-%{version}.tar.gz
@@ -40,11 +40,11 @@ rm -rf .libs *.{la,lo,o,slo}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd/httpd.conf}
 
 install .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
 
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/21_vhost_mysql.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/21_vhost_mysql.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
