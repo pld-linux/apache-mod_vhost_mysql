@@ -55,5 +55,5 @@ fi
 
 %files
 %defattr(644,root,root,755)
-%doc README
+%doc README vh.sql
 %attr(755,root,root) %{_pkglibdir}/*
