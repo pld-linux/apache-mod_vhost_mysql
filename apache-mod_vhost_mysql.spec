@@ -7,7 +7,7 @@
 Summary:	Apache vhost in mysql
 Name:		apache-mod_%{mod_name}
 Version:	0.10
-Release:	1
+Release:	0.1
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_%{mod_name}2/mod_%{mod_name}2-%{version}.tar.gz
