@@ -1,4 +1,3 @@
-
 %define		mod_name	vhost_mysql
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache vhost in MySQL
@@ -31,12 +30,11 @@ Apache'u 2 przy u¿yciu bazy MySQL.
 
 %prep
 %setup -q -n mod_%{mod_name}2-%{version}
-
 rm -rf .libs *.{la,lo,o,slo}
 
 %build
 %{__make} \
-	APXS=/usr/sbin/apxs
+	APXS=%{apxs}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -66,5 +64,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README vh.sql
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/httpd/httpd.conf/*_vhost_mysql.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/httpd.conf/*_vhost_mysql.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
