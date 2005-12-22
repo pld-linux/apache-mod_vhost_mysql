@@ -4,21 +4,22 @@ Summary:	Apache vhost in MySQL
 Summary(pl):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
 Version:	0.10
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_name}2-%{version}.tar.gz
 # Source0-md5:	c47c8dc4ac41e9ed2c91a239c876d272
 Source1:	apache_vhost_mysql.conf
 BuildRequires:	%{apxs}
-BuildRequires:	apache-devel
+BuildRequires:	apache-devel >= 2.0
 BuildRequires:	db-devel >= 4.2.52
 BuildRequires:	mysql-devel
-Requires(post,preun):	%{apxs}
-Requires:	apache
+Requires:	apache >= 2.0
+Requires:	apache(modules-api) = %apache_modules_api
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR)
+%define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
+%define		_sysconfdir	%(%{apxs} -q SYSCONFDIR 2>/dev/null)
 
 %description
 This module provides dynamically configured virtual hosting using
@@ -38,24 +39,21 @@ rm -rf .libs *.{la,lo,o,slo}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd/httpd.conf}
+install -d $RPM_BUILD_ROOT{%{_pkglibdir},%{_sysconfdir}/httpd.conf}
 
 install .libs/mod_%{mod_name}.so $RPM_BUILD_ROOT%{_pkglibdir}
-
-install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd/httpd.conf/21_vhost_mysql.conf
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/httpd.conf/21_vhost_mysql.conf
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
-%{apxs} -e -a -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 if [ -f /var/lock/subsys/httpd ]; then
 	/etc/rc.d/init.d/httpd restart 1>&2
 fi
 
 %preun
 if [ "$1" = "0" ]; then
-	%{apxs} -e -A -n %{mod_name} %{_pkglibdir}/mod_%{mod_name}.so 1>&2
 	if [ -f /var/lock/subsys/httpd ]; then
 		/etc/rc.d/init.d/httpd restart 1>&2
 	fi
@@ -64,5 +62,5 @@ fi
 %files
 %defattr(644,root,root,755)
 %doc README vh.sql
-%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd/httpd.conf/*_vhost_mysql.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/httpd.conf/*_vhost_mysql.conf
 %attr(755,root,root) %{_pkglibdir}/*.so
