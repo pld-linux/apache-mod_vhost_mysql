@@ -1,0 +1,20 @@
+--- mod_vhost_mysql2-0.10/mod_vhost_mysql.c~	2004-06-09 18:38:51.000000000 +0200
++++ mod_vhost_mysql2-0.10/mod_vhost_mysql.c	2006-09-28 17:34:15.000000000 +0200
+@@ -11,7 +11,7 @@
+ #include "ap_config.h"
+ #include "mysql.h"
+ 
+-#define VHOST_MYSQL_VERSION "0.10"
++#define VHOST_MYSQL_VERSION "0.10-publichtml"
+ module AP_MODULE_DECLARE_DATA vhost_mysql_module;
+ 
+ MYSQL mysql, *mysql_p = NULL;
+@@ -109,7 +109,7 @@
+ 
+ static char *construct_sql(apr_pool_t *p, vh_mysql_config *conf, const char *hostname){
+     char *sql;
+-    sql = apr_psprintf(p, "SELECT %s FROM %s WHERE %s = %s",
++    sql = apr_psprintf(p, "SELECT CONCAT(%s,'public_html') FROM %s WHERE %s = %s",
+ 		      conf->docroot_col, conf->table_name,
+ 		      conf->host_col,
+ 		      quote_sql(p, hostname));
