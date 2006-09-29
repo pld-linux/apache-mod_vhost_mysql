@@ -1,6 +1,9 @@
+#
+# Conditional build:
+%bcond_with	publichtml	# enables search of public_html in home taken from mysql
+#
 %define		mod_name	vhost_mysql
 %define 	apxs		/usr/sbin/apxs
-%bcond_with     publichtml           # enables search of public_html in home taken from mysql
 Summary:	Apache vhost in MySQL
 Summary(pl):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
