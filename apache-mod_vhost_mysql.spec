@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	publichtml	# enables search of public_html in home taken from mysql
+%bcond_with	publichtml	# enable search of public_html in home taken from mysql
 #
 %define		mod_name	vhost_mysql
 %define 	apxs		/usr/sbin/apxs
@@ -40,7 +40,6 @@ rm -rf .libs *.{la,lo,o,slo}
 %if %{with publichtml}
 %patch -p1
 %endif
-
 
 %build
 %{__make} \
