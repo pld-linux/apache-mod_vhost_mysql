@@ -5,7 +5,7 @@
 %define		mod_name	vhost_mysql
 %define 	apxs		/usr/sbin/apxs
 Summary:	Apache vhost in MySQL
-Summary(pl.UTF-8):   Wirtualne hosty dla Apache'a w bazie MySQL
+Summary(pl.UTF-8):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
 Version:	0.10
 Release:	6
