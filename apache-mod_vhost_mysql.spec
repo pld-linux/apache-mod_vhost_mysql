@@ -32,7 +32,7 @@ MySQL in Apache2.
 
 %description -l pl.UTF-8
 Ten moduł umożliwia dynamicznie konfigurowanie hostów wirtualnych w
-Apache'u 2 przy użyciu bazy MySQL.
+serwerze Apache 2 przy użyciu bazy MySQL.
 
 %prep
 %setup -q -n mod_%{mod_name}2-%{version}
