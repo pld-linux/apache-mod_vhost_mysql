@@ -21,6 +21,7 @@ BuildRequires:	db-devel >= 4.2.52
 BuildRequires:	mysql-devel
 BuildRequires:	rpmbuild(macros) >= 1.268
 Requires:	apache(modules-api) = %apache_modules_api
+Requires:	rc-scripts
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_pkglibdir	%(%{apxs} -q LIBEXECDIR 2>/dev/null)
