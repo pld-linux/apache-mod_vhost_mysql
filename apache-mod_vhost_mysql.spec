@@ -3,7 +3,7 @@
 %bcond_with	publichtml	# enable search of public_html in home taken from mysql
 #
 %define		mod_name	vhost_mysql
-%define 	apxs		/usr/sbin/apxs
+%define		apxs		/usr/sbin/apxs
 Summary:	Apache vhost in MySQL
 Summary(pl.UTF-8):	Wirtualne hosty dla Apache'a w bazie MySQL
 Name:		apache-mod_%{mod_name}
@@ -15,7 +15,7 @@ Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_na
 # Source0-md5:	c47c8dc4ac41e9ed2c91a239c876d272
 Source1:	apache_vhost_mysql.conf
 Patch0:		mod_%{mod_name}2-publichtml.patch		
-BuildRequires:	%{apxs}
+BuildRequires:	apache-apxs >= 2.0
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	db-devel >= 4.2.52
 BuildRequires:	mysql-devel
