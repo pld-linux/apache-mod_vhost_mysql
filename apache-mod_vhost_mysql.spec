@@ -15,7 +15,7 @@ Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_na
 # Source0-md5:	c47c8dc4ac41e9ed2c91a239c876d272
 Source1:	apache_vhost_mysql.conf
 Patch0:		mod_%{mod_name}2-publichtml.patch		
-BuildRequires:	apache-apxs >= 2.0
+BuildRequires:	%{apxs}
 BuildRequires:	apache-devel >= 2.0
 BuildRequires:	db-devel >= 4.2.52
 BuildRequires:	mysql-devel
