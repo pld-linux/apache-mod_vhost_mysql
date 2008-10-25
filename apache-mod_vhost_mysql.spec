@@ -10,7 +10,7 @@ Name:		apache-mod_%{mod_name}
 Version:	0.10
 Release:	6
 License:	GPL
-Group:		Networking/Daemons
+Group:		Networking/Daemons/HTTP
 Source0:	http://fabienne.tc2.utelisys.net/~skinkie/mod_vhost_mysql2/mod_%{mod_name}2-%{version}.tar.gz
 # Source0-md5:	c47c8dc4ac41e9ed2c91a239c876d272
 Source1:	apache_vhost_mysql.conf
